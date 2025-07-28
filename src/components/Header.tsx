@@ -26,11 +26,11 @@ const Header = () => {
             <div className="hidden lg:flex items-center space-x-4 text-sm">
               <div className="flex items-center space-x-1">
                 <Phone className="w-4 h-4 text-primary" />
-                <span className="text-foreground">+91 99999 00000</span>
+                <span className="text-foreground">+91 9913647948</span>
               </div>
               <div className="flex items-center space-x-1">
                 <Mail className="w-4 h-4 text-primary" />
-                <span className="text-foreground">info@vallabhforex.com</span>
+                <span className="text-foreground">vallabhforex@gmail.com</span>
               </div>
             </div>
             <Button variant="professional">Get Quote</Button>

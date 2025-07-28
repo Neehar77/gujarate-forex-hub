@@ -16,16 +16,16 @@ const Footer = () => {
               </div>
             </div>
             <p className="text-background/80 mb-4 max-w-md">
-              Your trusted partner for foreign exchange, travel insurance, mutual funds, and upcoming USDC transactions. RBI authorized and serving Gujarat since 2020.
+              Your trusted partner for foreign currency exchange, travel cards, remittance, and travel insurance. RBI authorized and serving Gujarat since 2020.
             </p>
             <div className="space-y-2">
               <div className="flex items-center space-x-2">
                 <Phone className="w-4 h-4" />
-                <span className="text-sm">+91 99999 00000</span>
+                <span className="text-sm">+91 9913647948</span>
               </div>
               <div className="flex items-center space-x-2">
                 <Mail className="w-4 h-4" />
-                <span className="text-sm">info@vallabhforex.com</span>
+                <span className="text-sm">vallabhforex@gmail.com</span>
               </div>
               <div className="flex items-center space-x-2">
                 <MapPin className="w-4 h-4" />
@@ -37,10 +37,10 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold mb-4">Services</h4>
             <ul className="space-y-2 text-background/80">
-              <li>Foreign Exchange</li>
+              <li>Foreign Currency Buy & Sell</li>
+              <li>Foreign Currency Travel Card</li>
+              <li>Foreign Currency Remittance</li>
               <li>Travel Insurance</li>
-              <li>Mutual Funds</li>
-              <li>USDC Transactions (Soon)</li>
             </ul>
           </div>
           

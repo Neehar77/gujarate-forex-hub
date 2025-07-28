@@ -16,9 +16,23 @@ const Services = () => {
   const services = [
     {
       icon: DollarSign,
-      title: "Foreign Exchange",
-      description: "Best exchange rates for all major currencies. Quick and secure transactions with competitive rates.",
+      title: "Foreign Currency Buy & Sell",
+      description: "Best exchange rates for all major currencies with quick and secure transactions.",
       features: ["Live Exchange Rates", "Multiple Currencies", "Instant Processing", "RBI Authorized"],
+      color: "primary"
+    },
+    {
+      icon: Coins,
+      title: "Foreign Currency Travel Card",
+      description: "Convenient prepaid travel cards for international trips with competitive rates.",
+      features: ["Multi-Currency Card", "Secure Transactions", "Global Acceptance", "Easy Reloading"],
+      color: "accent"
+    },
+    {
+      icon: TrendingUp,
+      title: "Foreign Currency Remittance",
+      description: "Fast and secure money transfer services to international destinations.",
+      features: ["Quick Transfers", "Competitive Rates", "Secure Process", "Global Network"],
       color: "primary"
     },
     {
@@ -27,21 +41,6 @@ const Services = () => {
       description: "Comprehensive travel insurance coverage for international and domestic trips.",
       features: ["Medical Coverage", "Trip Cancellation", "Baggage Protection", "24/7 Support"],
       color: "accent"
-    },
-    {
-      icon: TrendingUp,
-      title: "Mutual Funds",
-      description: "Expert-guided investment solutions to help you grow your wealth systematically.",
-      features: ["Expert Advisory", "Diversified Portfolio", "Low Risk Options", "Regular Returns"],
-      color: "primary"
-    },
-    {
-      icon: Coins,
-      title: "USDC Transactions",
-      description: "Coming soon! Seamless USDC cryptocurrency transactions with competitive rates.",
-      features: ["Digital Currency", "Fast Transfers", "Low Fees", "Secure Wallet"],
-      color: "accent",
-      isComingSoon: true
     }
   ];
 
@@ -66,12 +65,7 @@ const Services = () => {
                 }`}>
                   <service.icon className="w-8 h-8" />
                 </div>
-                <div className="flex items-center justify-center gap-2">
-                  <CardTitle className="text-xl">{service.title}</CardTitle>
-                  {service.isComingSoon && (
-                    <Badge variant="secondary" className="text-xs">Soon</Badge>
-                  )}
-                </div>
+                <CardTitle className="text-xl">{service.title}</CardTitle>
                 <CardDescription className="text-base">
                   {service.description}
                 </CardDescription>
@@ -85,12 +79,8 @@ const Services = () => {
                     </li>
                   ))}
                 </ul>
-                <Button 
-                  variant={service.isComingSoon ? "outline" : "professional"} 
-                  className="w-full"
-                  disabled={service.isComingSoon}
-                >
-                  {service.isComingSoon ? "Coming Soon" : "Learn More"}
+                <Button variant="professional" className="w-full">
+                  Learn More
                 </Button>
               </CardContent>
             </Card>
