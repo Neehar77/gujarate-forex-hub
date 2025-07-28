@@ -9,7 +9,7 @@ const About = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-8 animate-fade-in">
             <div className="space-y-4">
-              <Badge variant="secondary" className="text-sm">About ForexIndia</Badge>
+              <Badge variant="secondary" className="text-sm">About Vallabh Forex Inc.</Badge>
               <h2 className="text-3xl lg:text-5xl font-bold">
                 Leading Forex Services in
                 <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent"> Ahmedabad</span>
@@ -74,7 +74,7 @@ const About = () => {
             <div className="bg-gradient-to-br from-primary/5 to-accent/5 rounded-2xl p-8">
               <div className="space-y-6">
                 <div className="text-center">
-                  <h3 className="text-2xl font-bold mb-4">Why Choose ForexIndia?</h3>
+                  <h3 className="text-2xl font-bold mb-4">Why Choose Vallabh Forex Inc.?</h3>
                 </div>
                 
                 <div className="space-y-4">

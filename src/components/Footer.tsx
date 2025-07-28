@@ -8,10 +8,10 @@ const Footer = () => {
           <div className="col-span-2">
             <div className="flex items-center space-x-2 mb-4">
               <div className="w-10 h-10 bg-gradient-to-r from-primary to-accent rounded-lg flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-xl">FX</span>
+                <span className="text-primary-foreground font-bold text-xl">VF</span>
               </div>
               <div>
-                <h3 className="font-bold text-xl">ForexIndia</h3>
+                <h3 className="font-bold text-xl">Vallabh Forex Inc.</h3>
                 <p className="text-sm opacity-80">Ahmedabad, Gujarat</p>
               </div>
             </div>
@@ -25,7 +25,7 @@ const Footer = () => {
               </div>
               <div className="flex items-center space-x-2">
                 <Mail className="w-4 h-4" />
-                <span className="text-sm">info@forexindia.com</span>
+                <span className="text-sm">info@vallabhforex.com</span>
               </div>
               <div className="flex items-center space-x-2">
                 <MapPin className="w-4 h-4" />
@@ -56,7 +56,7 @@ const Footer = () => {
         </div>
         
         <div className="border-t border-background/20 mt-8 pt-8 text-center text-background/60">
-          <p>&copy; 2024 ForexIndia. All rights reserved. RBI Authorized Money Changer.</p>
+          <p>&copy; 2024 Vallabh Forex Inc. All rights reserved. RBI Authorized Money Changer.</p>
         </div>
       </div>
     </footer>

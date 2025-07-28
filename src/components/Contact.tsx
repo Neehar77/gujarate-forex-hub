@@ -40,8 +40,8 @@ const Contact = () => {
                   </div>
                   <div>
                     <h4 className="font-semibold mb-1">Email</h4>
-                    <p className="text-muted-foreground">info@forexindia.com</p>
-                    <p className="text-muted-foreground">support@forexindia.com</p>
+                    <p className="text-muted-foreground">info@vallabhforex.com</p>
+                    <p className="text-muted-foreground">support@vallabhforex.com</p>
                   </div>
                 </div>
                 

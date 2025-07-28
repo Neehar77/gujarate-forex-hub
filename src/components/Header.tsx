@@ -6,15 +6,15 @@ const Header = () => {
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b">
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-2">
-            <div className="w-10 h-10 bg-gradient-to-r from-primary to-accent rounded-lg flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-xl">FX</span>
+            <div className="flex items-center space-x-2">
+              <div className="w-10 h-10 bg-gradient-to-r from-primary to-accent rounded-lg flex items-center justify-center">
+                <span className="text-primary-foreground font-bold text-xl">VF</span>
+              </div>
+              <div>
+                <h1 className="font-bold text-xl text-foreground">Vallabh Forex Inc.</h1>
+                <p className="text-xs text-muted-foreground">Ahmedabad, Gujarat</p>
+              </div>
             </div>
-            <div>
-              <h1 className="font-bold text-xl text-foreground">ForexIndia</h1>
-              <p className="text-xs text-muted-foreground">Ahmedabad, Gujarat</p>
-            </div>
-          </div>
           
           <nav className="hidden md:flex items-center space-x-8">
             <a href="#services" className="text-foreground hover:text-primary transition-colors">Services</a>
@@ -30,7 +30,7 @@ const Header = () => {
               </div>
               <div className="flex items-center space-x-1">
                 <Mail className="w-4 h-4 text-primary" />
-                <span className="text-foreground">info@forexindia.com</span>
+                <span className="text-foreground">info@vallabhforex.com</span>
               </div>
             </div>
             <Button variant="professional">Get Quote</Button>
