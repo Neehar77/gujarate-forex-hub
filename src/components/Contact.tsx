@@ -50,13 +50,14 @@ const Contact = () => {
                   <div>
                     <h4 className="font-semibold mb-1">Address</h4>
                     <p className="text-muted-foreground">
-                      Commercial Complex, SG Highway<br />
+                      B-3, Nirkunj Avenue, Opp. Kanchanbhumi Appartment,<br />
+                      B/h, Gopi Dinning Hall, 100 Ft Road, Satellite,<br />
                       Ahmedabad, Gujarat 380015<br />
                       India
                     </p>
                   </div>
                 </div>
-                
+ 
                 <div className="flex items-start space-x-4">
                   <div className="w-12 h-12 bg-accent rounded-lg flex items-center justify-center">
                     <Clock className="w-6 h-6 text-accent-foreground" />

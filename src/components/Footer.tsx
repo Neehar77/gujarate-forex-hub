@@ -11,12 +11,12 @@ const Footer = () => {
                 <span className="text-primary-foreground font-bold text-xl">VF</span>
               </div>
               <div>
-                <h3 className="font-bold text-xl">Vallabh Forex Inc.</h3>
+                <h3 className="font-bold text-xl">Vallabh Forex Pvt Ltd</h3>
                 <p className="text-sm opacity-80">Ahmedabad, Gujarat</p>
               </div>
             </div>
             <p className="text-background/80 mb-4 max-w-md">
-              Your trusted partner for foreign currency exchange, travel cards, remittance, and travel insurance. RBI authorized and serving Gujarat since 2020.
+              Your trusted partner for foreign currency exchange, travel cards, remittance, and travel insurance. RBI authorized and serving Gujarat since 2018.
             </p>
             <div className="space-y-2">
               <div className="flex items-center space-x-2">

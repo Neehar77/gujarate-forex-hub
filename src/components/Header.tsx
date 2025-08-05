@@ -11,11 +11,11 @@ const Header = () => {
                 <span className="text-primary-foreground font-bold text-xl">VF</span>
               </div>
               <div>
-                <h1 className="font-bold text-xl text-foreground">Vallabh Forex Inc.</h1>
+                <h1 className="font-bold text-xl text-foreground">Vallabh Forex Pvt Ltd</h1>
                 <p className="text-xs text-muted-foreground">Ahmedabad, Gujarat</p>
               </div>
             </div>
-          
+         
           <nav className="hidden md:flex items-center space-x-8">
             <a href="#services" className="text-foreground hover:text-primary transition-colors">Services</a>
             <a href="#about" className="text-foreground hover:text-primary transition-colors">About</a>

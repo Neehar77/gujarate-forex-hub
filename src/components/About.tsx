@@ -15,10 +15,10 @@ const About = () => {
                 <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent"> Ahmedabad</span>
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Based in the vibrant commercial hub of Ahmedabad, Gujarat, we have been serving individuals and businesses with comprehensive financial services since 2020. Our commitment to excellence and customer satisfaction has made us a trusted name in foreign exchange and financial services.
+                Based in the vibrant commercial hub of Ahmedabad, Gujarat, we have been serving individuals and businesses with comprehensive financial services since 2018. Our commitment to excellence and customer satisfaction has made us a trusted name in foreign exchange and financial services.
               </p>
             </div>
-            
+           
             <div className="grid sm:grid-cols-2 gap-4">
               <Card className="border-l-4 border-l-primary">
                 <CardContent className="p-4">
@@ -38,7 +38,7 @@ const About = () => {
                     <Calendar className="w-5 h-5 text-accent mt-1" />
                     <div>
                       <h4 className="font-semibold">Established</h4>
-                      <p className="text-sm text-muted-foreground">2020</p>
+                      <p className="text-sm text-muted-foreground">2018</p>
                     </div>
                   </div>
                 </CardContent>

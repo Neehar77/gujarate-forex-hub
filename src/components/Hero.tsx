@@ -14,7 +14,7 @@ const Hero = () => {
                 <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent"> Foreign Exchange</span>
               </h1>
               <p className="text-xl text-muted-foreground leading-relaxed">
-                Leading forex services in Ahmedabad, Gujarat. We provide comprehensive foreign exchange, travel insurance, mutual funds, and soon USDC transactions.
+                Leading forex services in Ahmedabad, Gujarat. We provide comprehensive foreign exchange, travel insurance and soon USDC transactions.
               </p>
             </div>
             
@@ -55,7 +55,7 @@ const Hero = () => {
             </div>
             <div className="absolute -bottom-6 -left-6 bg-primary text-primary-foreground p-4 rounded-xl shadow-lg">
               <div className="text-sm font-medium">Founded</div>
-              <div className="text-2xl font-bold">2020</div>
+              <div className="text-2xl font-bold">2018</div>
             </div>
             <div className="absolute -top-6 -right-6 bg-accent text-accent-foreground p-4 rounded-xl shadow-lg">
               <div className="text-sm font-medium">Happy Clients</div>
