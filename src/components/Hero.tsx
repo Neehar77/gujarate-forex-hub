@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, TrendingUp, Shield, Globe } from "lucide-react";
 import heroImage from "@/assets/hero-forex.jpg";
+import QuoteRequestModal from "./QuoteRequestModal";
 
 const Hero = () => {
   return (
@@ -34,11 +35,25 @@ const Hero = () => {
             </div>
             
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button variant="hero" size="lg" className="group">
-                Get Started Today
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </Button>
-              <Button variant="outline" size="lg">
+              <QuoteRequestModal 
+                service="Foreign Exchange"
+                trigger={
+                  <Button variant="hero" size="lg" className="group">
+                    Get Started Today
+                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  </Button>
+                }
+              />
+              <Button 
+                variant="outline" 
+                size="lg"
+                onClick={() => {
+                  const servicesSection = document.getElementById('services');
+                  if (servicesSection) {
+                    servicesSection.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }}
+              >
                 View Our Services
               </Button>
             </div>

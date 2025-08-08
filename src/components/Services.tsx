@@ -11,6 +11,7 @@ import {
   Award,
   Users
 } from "lucide-react";
+import QuoteRequestModal from "./QuoteRequestModal";
 
 const Services = () => {
   const services = [
@@ -79,9 +80,14 @@ const Services = () => {
                     </li>
                   ))}
                 </ul>
-                <Button variant="professional" className="w-full">
-                  Learn More
-                </Button>
+                <QuoteRequestModal 
+                  service={service.title}
+                  trigger={
+                    <Button variant="professional" className="w-full">
+                      Learn More
+                    </Button>
+                  }
+                />
               </CardContent>
             </Card>
           ))}
