@@ -9,8 +9,10 @@
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview",
+    "start": "node server/index.js",
     "server": "node server/index.js",
     "server:dev": "nodemon server/index.js",
+    "build:prod": "npm run build",
     "dev:full": "concurrently \"npm run dev\" \"npm run server:dev\""
   },
   "dependencies": {
