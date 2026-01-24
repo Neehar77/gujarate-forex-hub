@@ -65,6 +65,37 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 // Prevent HTTP Parameter Pollution
 app.use(hpp());
 
+// Validation middleware
+const validateContactForm = [
+  body('name').trim().isLength({ min: 2, max: 50 }).escape().withMessage('Name must be between 2 and 50 characters'),
+  body('email').isEmail().normalizeEmail().withMessage('Please provide a valid email'),
+  body('phone').trim().customSanitizer(val => val.replace(/[\s-]/g, '')).matches(/^[\+]?[1-9][\d]{0,15}$/).withMessage('Please provide a valid phone number'),
+  body('service').trim().isLength({ min: 1, max: 100 }).escape().withMessage('Service is required'),
+  body('message').trim().isLength({ min: 2, max: 1000 }).escape().withMessage('Message must be between 2 and 1000 characters')
+];
+
+const validateQuoteRequest = [
+  body('name').trim().isLength({ min: 2, max: 50 }).withMessage('Name must be between 2 and 50 characters'),
+  body('email').isEmail().normalizeEmail().withMessage('Please provide a valid email'),
+  body('phone').matches(/^[\+]?[1-9][\d]{0,15}$/).withMessage('Please provide a valid phone number'),
+  body('service').trim().isLength({ min: 1, max: 100 }).withMessage('Service is required'),
+  body('amount').optional().isNumeric().withMessage('Amount must be a number'),
+  body('currency').optional().trim().isLength({ min: 1, max: 10 }).withMessage('Currency is required')
+];
+
+// Error handling middleware
+const handleValidationErrors = (req, res, next) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({
+      success: false,
+      message: 'Validation failed',
+      errors: errors.array()
+    });
+  }
+  next();
+};
+
 // Contact form submission
 app.post('/api/contact', validateContactForm, handleValidationErrors, async (req, res) => {
   try {
