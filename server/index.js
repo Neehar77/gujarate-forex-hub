@@ -15,6 +15,9 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
+// Trust proxy (required for Render/Heroku etc. where app sits behind a load balancer)
+app.set('trust proxy', 1);
+
 const PORT = process.env.PORT || 3000;
 
 // Security middleware
@@ -93,9 +96,9 @@ app.get('/api/health', (req, res) => {
 app.post('/api/contact', validateContactForm, handleValidationErrors, async (req, res) => {
   try {
     const { name, email, phone, service, message } = req.body;
-    
+
     const transporter = createTransporter();
-    
+
     // Email to company
     const companyMailOptions = {
       from: process.env.EMAIL_USER,
@@ -154,9 +157,9 @@ app.post('/api/contact', validateContactForm, handleValidationErrors, async (req
 app.post('/api/quote', validateQuoteRequest, handleValidationErrors, async (req, res) => {
   try {
     const { name, email, phone, service, amount, currency, additionalInfo } = req.body;
-    
+
     const transporter = createTransporter();
-    
+
     const mailOptions = {
       from: process.env.EMAIL_USER,
       to: process.env.COMPANY_EMAIL || 'vallabhforex@gmail.com',
@@ -199,9 +202,9 @@ app.post('/api/service-inquiry', [
 ], handleValidationErrors, async (req, res) => {
   try {
     const { name, email, phone, service } = req.body;
-    
+
     const transporter = createTransporter();
-    
+
     const mailOptions = {
       from: process.env.EMAIL_USER,
       to: process.env.COMPANY_EMAIL || 'vallabhforex@gmail.com',
@@ -293,7 +296,7 @@ app.get('/api/services', (req, res) => {
 // Serve static files in production
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../dist')));
-  
+
   app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../dist/index.html'));
   });
