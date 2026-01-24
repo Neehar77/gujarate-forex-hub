@@ -4,171 +4,56 @@ import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
 import hpp from 'hpp';
 import { body, validationResult } from 'express-validator';
-import nodemailer from 'nodemailer';
-import dotenv from 'dotenv';
-import path from 'path';
-import { fileURLToPath } from 'url';
+import { Resend } from 'resend';
 
-// Load environment variables
-dotenv.config();
+// ... (other imports)
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+// Initialize Resend
+const resend = new Resend(process.env.RESEND_API_KEY);
 
-const app = express();
-// Trust proxy (required for Render/Heroku etc. where app sits behind a load balancer)
-app.set('trust proxy', 1);
-
-const PORT = process.env.PORT || 3000;
-
-// Security middleware
-app.use(helmet({
-  contentSecurityPolicy: {
-    directives: {
-      defaultSrc: ["'self'"],
-      connectSrc: ["'self'", process.env.FRONTEND_URL || 'http://localhost:8081'],
-      scriptSrc: ["'self'", "'unsafe-inline'"],
-      styleSrc: ["'self'", "'unsafe-inline'"],
-      imgSrc: ["'self'", "data:", "https:"],
-    },
-  },
-  hsts: {
-    maxAge: 31536000,
-    includeSubDomains: true,
-    preload: true,
-  },
-}));
-
-app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:8081',
-  methods: ['GET', 'POST'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: true
-}));
-
-// Rate limiting
-const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100, // limit each IP to 100 requests per windowMs
-  message: 'Too many requests from this IP, please try again later.'
-});
-app.use('/api/', limiter);
-
-// Body parsing middleware
-app.use(express.json({ limit: '10mb' }));
-app.use(express.urlencoded({ extended: true, limit: '10mb' }));
-
-// Prevent HTTP Parameter Pollution
-app.use(hpp());
-
-// Email transporter configuration
-const createTransporter = () => {
-  return nodemailer.createTransport({
-    host: 'smtp.gmail.com',
-    port: 465,
-    secure: true, // true for 465, false for other ports
-    auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS
-    },
-    // Add timeouts to prevent hanging
-    connectionTimeout: 10000, // 10 seconds
-    greetingTimeout: 10000,
-    socketTimeout: 20000
-  });
-};
-
-// Validation middleware
-const validateContactForm = [
-  body('name').trim().isLength({ min: 2, max: 50 }).escape().withMessage('Name must be between 2 and 50 characters'),
-  body('email').isEmail().normalizeEmail().withMessage('Please provide a valid email'),
-  body('phone').trim().customSanitizer(val => val.replace(/[\s-]/g, '')).matches(/^[\+]?[1-9][\d]{0,15}$/).withMessage('Please provide a valid phone number'),
-  body('service').trim().isLength({ min: 1, max: 100 }).escape().withMessage('Service is required'),
-  body('message').trim().isLength({ min: 2, max: 1000 }).escape().withMessage('Message must be between 2 and 1000 characters')
-];
-
-const validateQuoteRequest = [
-  body('name').trim().isLength({ min: 2, max: 50 }).withMessage('Name must be between 2 and 50 characters'),
-  body('email').isEmail().normalizeEmail().withMessage('Please provide a valid email'),
-  body('phone').matches(/^[\+]?[1-9][\d]{0,15}$/).withMessage('Please provide a valid phone number'),
-  body('service').trim().isLength({ min: 1, max: 100 }).withMessage('Service is required'),
-  body('amount').optional().isNumeric().withMessage('Amount must be a number'),
-  body('currency').optional().trim().isLength({ min: 1, max: 10 }).withMessage('Currency is required')
-];
-
-// Error handling middleware
-const handleValidationErrors = (req, res, next) => {
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.status(400).json({
-      success: false,
-      message: 'Validation failed',
-      errors: errors.array()
-    });
-  }
-  next();
-};
-
-// Routes
-
-// Health check endpoint
-app.get('/api/health', (req, res) => {
-  res.json({
-    success: true,
-    message: 'Vallabh Forex API is running',
-    timestamp: new Date().toISOString()
-  });
-});
+// ... (middleware setup)
 
 // Contact form submission
 app.post('/api/contact', validateContactForm, handleValidationErrors, async (req, res) => {
   try {
     const { name, email, phone, service, message } = req.body;
 
-    const transporter = createTransporter();
+    console.log(`[Contact Form] Attempting to send emails via Resend for: ${email}`);
 
     // Email to company
-    const companyMailOptions = {
-      from: process.env.EMAIL_USER,
+    await resend.emails.send({
+      from: 'Vallabh Forex <onboarding@resend.dev>',
       to: process.env.COMPANY_EMAIL || 'vallabhforex@gmail.com',
-      subject: `New Contact Form Submission - ${service}`,
+      reply_to: email, // Reply directly to the customer
+      subject: `New Contact Form - ${name} (${service})`,
       html: `
         <h2>New Contact Form Submission</h2>
         <p><strong>Name:</strong> ${name}</p>
         <p><strong>Email:</strong> ${email}</p>
         <p><strong>Phone:</strong> ${phone}</p>
-        <p><strong>Service Interested In:</strong> ${service}</p>
+        <p><strong>Service:</strong> ${service}</p>
         <p><strong>Message:</strong></p>
         <p>${message}</p>
         <hr>
-        <p><small>Submitted on: ${new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })}</small></p>
+        <p><small>Sent via Vallabh Forex Website</small></p>
       `
-    };
+    });
+    console.log(`[Contact Form] Company email sent`);
 
     // Confirmation email to customer
-    const customerMailOptions = {
-      from: process.env.EMAIL_USER,
+    await resend.emails.send({
+      from: 'Vallabh Forex <onboarding@resend.dev>',
       to: email,
-      subject: 'Thank you for contacting Vallabh Forex',
+      subject: 'We received your message!',
       html: `
         <h2>Thank you for contacting Vallabh Forex!</h2>
         <p>Dear ${name},</p>
-        <p>We have received your inquiry about <strong>${service}</strong> and will get back to you within 24 hours.</p>
-        <p>Here's a copy of your message:</p>
-        <blockquote>${message}</blockquote>
-        <p>If you have any urgent queries, please call us at <strong>+91 9913647948</strong>.</p>
+        <p>We have received your inquiry about <strong>${service}</strong> and will get back to you shortly.</p>
+        <p>For urgent matters, please call us at <strong>+91 9913647948</strong>.</p>
         <br>
         <p>Best regards,<br>Team Vallabh Forex</p>
-        <hr>
-        <p><small>Vallabh Forex Pvt Ltd<br>Ahmedabad, Gujarat</small></p>
       `
-    };
-
-    console.log(`[Contact Form] Attempting to send emails for: ${email}`);
-    await transporter.sendMail(companyMailOptions);
-    console.log(`[Contact Form] Company email sent`);
-
-    await transporter.sendMail(customerMailOptions);
+    });
     console.log(`[Contact Form] Customer confirmation email sent`);
 
     res.json({
