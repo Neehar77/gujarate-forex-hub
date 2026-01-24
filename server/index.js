@@ -75,11 +75,13 @@ app.post('/api/quote', validateQuoteRequest, handleValidationErrors, async (req,
   try {
     const { name, email, phone, service, amount, currency, additionalInfo } = req.body;
 
-    const transporter = createTransporter();
+    console.log(`[Quote Request] Attempting to send emails via Resend for: ${email}`);
 
-    const mailOptions = {
-      from: process.env.EMAIL_USER,
+    // Email to company
+    await resend.emails.send({
+      from: 'Vallabh Forex <onboarding@resend.dev>',
       to: process.env.COMPANY_EMAIL || 'vallabhforex@gmail.com',
+      reply_to: email,
       subject: `New Quote Request - ${service}`,
       html: `
         <h2>New Quote Request</h2>
@@ -92,9 +94,8 @@ app.post('/api/quote', validateQuoteRequest, handleValidationErrors, async (req,
         <hr>
         <p><small>Requested on: ${new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })}</small></p>
       `
-    };
-
-    await transporter.sendMail(mailOptions);
+    });
+    console.log(`[Quote Request] Company email sent`);
 
     res.json({
       success: true,
@@ -120,11 +121,12 @@ app.post('/api/service-inquiry', [
   try {
     const { name, email, phone, service } = req.body;
 
-    const transporter = createTransporter();
+    console.log(`[Service Inquiry] Attempting to send emails via Resend for: ${email}`);
 
-    const mailOptions = {
-      from: process.env.EMAIL_USER,
+    await resend.emails.send({
+      from: 'Vallabh Forex <onboarding@resend.dev>',
       to: process.env.COMPANY_EMAIL || 'vallabhforex@gmail.com',
+      reply_to: email,
       subject: `Service Inquiry - ${service}`,
       html: `
         <h2>New Service Inquiry</h2>
@@ -135,9 +137,8 @@ app.post('/api/service-inquiry', [
         <hr>
         <p><small>Inquired on: ${new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })}</small></p>
       `
-    };
-
-    await transporter.sendMail(mailOptions);
+    });
+    console.log(`[Service Inquiry] Company email sent`);
 
     res.json({
       success: true,
