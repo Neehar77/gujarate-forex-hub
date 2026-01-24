@@ -6,12 +6,64 @@ import hpp from 'hpp';
 import { body, validationResult } from 'express-validator';
 import { Resend } from 'resend';
 
-// ... (other imports)
+import dotenv from 'dotenv';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+// Load environment variables
+dotenv.config();
 
 // Initialize Resend
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-// ... (middleware setup)
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const app = express();
+// Trust proxy (required for Render/Heroku etc. where app sits behind a load balancer)
+app.set('trust proxy', 1);
+
+const PORT = process.env.PORT || 3000;
+
+// Security middleware
+app.use(helmet({
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc: ["'self'"],
+      connectSrc: ["'self'", process.env.FRONTEND_URL || 'http://localhost:8081'],
+      scriptSrc: ["'self'", "'unsafe-inline'"],
+      styleSrc: ["'self'", "'unsafe-inline'"],
+      imgSrc: ["'self'", "data:", "https:"],
+    },
+  },
+  hsts: {
+    maxAge: 31536000,
+    includeSubDomains: true,
+    preload: true,
+  },
+}));
+
+app.use(cors({
+  origin: process.env.FRONTEND_URL || 'http://localhost:8081',
+  methods: ['GET', 'POST'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true
+}));
+
+// Rate limiting
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // limit each IP to 100 requests per windowMs
+  message: 'Too many requests from this IP, please try again later.'
+});
+app.use('/api/', limiter);
+
+// Body parsing middleware
+app.use(express.json({ limit: '10mb' }));
+app.use(express.urlencoded({ extended: true, limit: '10mb' }));
+
+// Prevent HTTP Parameter Pollution
+app.use(hpp());
 
 // Contact form submission
 app.post('/api/contact', validateContactForm, handleValidationErrors, async (req, res) => {
