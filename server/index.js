@@ -76,9 +76,9 @@ const createTransporter = () => {
 const validateContactForm = [
   body('name').trim().isLength({ min: 2, max: 50 }).escape().withMessage('Name must be between 2 and 50 characters'),
   body('email').isEmail().normalizeEmail().withMessage('Please provide a valid email'),
-  body('phone').matches(/^[\+]?[1-9][\d]{0,15}$/).withMessage('Please provide a valid phone number'),
+  body('phone').trim().customSanitizer(val => val.replace(/[\s-]/g, '')).matches(/^[\+]?[1-9][\d]{0,15}$/).withMessage('Please provide a valid phone number'),
   body('service').trim().isLength({ min: 1, max: 100 }).escape().withMessage('Service is required'),
-  body('message').trim().isLength({ min: 10, max: 1000 }).escape().withMessage('Message must be between 10 and 1000 characters')
+  body('message').trim().isLength({ min: 2, max: 1000 }).escape().withMessage('Message must be between 2 and 1000 characters')
 ];
 
 const validateQuoteRequest = [
