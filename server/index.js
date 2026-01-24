@@ -68,7 +68,11 @@ const createTransporter = () => {
     auth: {
       user: process.env.EMAIL_USER,
       pass: process.env.EMAIL_PASS
-    }
+    },
+    // Add timeouts to prevent hanging
+    connectionTimeout: 10000, // 10 seconds
+    greetingTimeout: 10000,
+    socketTimeout: 20000
   });
 };
 
@@ -158,8 +162,12 @@ app.post('/api/contact', validateContactForm, handleValidationErrors, async (req
       `
     };
 
+    console.log(`[Contact Form] Attempting to send emails for: ${email}`);
     await transporter.sendMail(companyMailOptions);
+    console.log(`[Contact Form] Company email sent`);
+
     await transporter.sendMail(customerMailOptions);
+    console.log(`[Contact Form] Customer confirmation email sent`);
 
     res.json({
       success: true,
