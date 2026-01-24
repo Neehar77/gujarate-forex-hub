@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
+import hpp from 'hpp';
 import { body, validationResult } from 'express-validator';
 import nodemailer from 'nodemailer';
 import dotenv from 'dotenv';
@@ -21,9 +22,27 @@ app.set('trust proxy', 1);
 const PORT = process.env.PORT || 3000;
 
 // Security middleware
-app.use(helmet());
+app.use(helmet({
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc: ["'self'"],
+      connectSrc: ["'self'", process.env.FRONTEND_URL || 'http://localhost:8081'],
+      scriptSrc: ["'self'", "'unsafe-inline'"],
+      styleSrc: ["'self'", "'unsafe-inline'"],
+      imgSrc: ["'self'", "data:", "https:"],
+    },
+  },
+  hsts: {
+    maxAge: 31536000,
+    includeSubDomains: true,
+    preload: true,
+  },
+}));
+
 app.use(cors({
   origin: process.env.FRONTEND_URL || 'http://localhost:8081',
+  methods: ['GET', 'POST'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
 }));
 
@@ -39,6 +58,9 @@ app.use('/api/', limiter);
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
+// Prevent HTTP Parameter Pollution
+app.use(hpp());
+
 // Email transporter configuration
 const createTransporter = () => {
   return nodemailer.createTransport({
@@ -52,11 +74,11 @@ const createTransporter = () => {
 
 // Validation middleware
 const validateContactForm = [
-  body('name').trim().isLength({ min: 2, max: 50 }).withMessage('Name must be between 2 and 50 characters'),
+  body('name').trim().isLength({ min: 2, max: 50 }).escape().withMessage('Name must be between 2 and 50 characters'),
   body('email').isEmail().normalizeEmail().withMessage('Please provide a valid email'),
   body('phone').matches(/^[\+]?[1-9][\d]{0,15}$/).withMessage('Please provide a valid phone number'),
-  body('service').trim().isLength({ min: 1, max: 100 }).withMessage('Service is required'),
-  body('message').trim().isLength({ min: 10, max: 1000 }).withMessage('Message must be between 10 and 1000 characters')
+  body('service').trim().isLength({ min: 1, max: 100 }).escape().withMessage('Service is required'),
+  body('message').trim().isLength({ min: 10, max: 1000 }).escape().withMessage('Message must be between 10 and 1000 characters')
 ];
 
 const validateQuoteRequest = [
