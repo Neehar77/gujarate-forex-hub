@@ -118,7 +118,7 @@ app.post('/api/contact', validateContactForm, handleValidationErrors, async (req
         <p><strong>Message:</strong></p>
         <p>${message}</p>
         <hr>
-        <p><small>Sent via Vallabh Forex Website</small></p>
+        <p><small>Sent via Shri Vallabh Forex Website</small></p>
       `
     });
     console.log(`[Contact Form] Company email sent`);

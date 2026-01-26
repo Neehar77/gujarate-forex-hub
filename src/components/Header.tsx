@@ -28,7 +28,7 @@ const Header = () => {
               <span className="text-primary-foreground font-bold text-xl">VF</span>
             </div>
             <div>
-              <h1 className="font-bold text-xl text-foreground">Vallabh Forex Pvt Ltd</h1>
+              <h1 className="font-bold text-xl text-foreground">Shri Vallabh Forex Pvt Ltd</h1>
               <p className="text-xs text-muted-foreground">Ahmedabad, Gujarat</p>
             </div>
           </div>

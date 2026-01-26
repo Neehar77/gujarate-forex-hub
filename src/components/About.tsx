@@ -9,7 +9,7 @@ const About = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-8 animate-fade-in">
             <div className="space-y-4">
-              <Badge variant="secondary" className="text-sm">About Vallabh Forex Inc.</Badge>
+              <Badge variant="secondary" className="text-sm">About Shri Vallabh Forex Pvt Ltd.</Badge>
               <h2 className="text-3xl lg:text-5xl font-bold">
                 Leading Forex Services in
                 <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent"> Ahmedabad</span>
@@ -18,7 +18,7 @@ const About = () => {
                 Based in the vibrant commercial hub of Ahmedabad, Gujarat, we have been serving individuals and businesses with comprehensive financial services since 2018. Our commitment to excellence and customer satisfaction has made us a trusted name in foreign exchange and financial services.
               </p>
             </div>
-           
+
             <div className="grid sm:grid-cols-2 gap-4">
               <Card className="border-l-4 border-l-primary">
                 <CardContent className="p-4">
@@ -31,7 +31,7 @@ const About = () => {
                   </div>
                 </CardContent>
               </Card>
-              
+
               <Card className="border-l-4 border-l-accent">
                 <CardContent className="p-4">
                   <div className="flex items-start space-x-3">
@@ -43,7 +43,7 @@ const About = () => {
                   </div>
                 </CardContent>
               </Card>
-              
+
               <Card className="border-l-4 border-l-primary">
                 <CardContent className="p-4">
                   <div className="flex items-start space-x-3">
@@ -55,7 +55,7 @@ const About = () => {
                   </div>
                 </CardContent>
               </Card>
-              
+
               <Card className="border-l-4 border-l-accent">
                 <CardContent className="p-4">
                   <div className="flex items-start space-x-3">
@@ -69,14 +69,14 @@ const About = () => {
               </Card>
             </div>
           </div>
-          
+
           <div className="relative animate-slide-up">
             <div className="bg-gradient-to-br from-primary/5 to-accent/5 rounded-2xl p-8">
               <div className="space-y-6">
                 <div className="text-center">
-                  <h3 className="text-2xl font-bold mb-4">Why Choose Vallabh Forex Inc.?</h3>
+                  <h3 className="text-2xl font-bold mb-4">Why Choose Shri Vallabh Forex Pvt Ltd.?</h3>
                 </div>
-                
+
                 <div className="space-y-4">
                   <div className="flex items-start space-x-4">
                     <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
@@ -87,7 +87,7 @@ const About = () => {
                       <p className="text-sm text-muted-foreground">Best exchange rates in the market with transparent pricing</p>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-start space-x-4">
                     <div className="w-8 h-8 bg-accent rounded-full flex items-center justify-center flex-shrink-0">
                       <span className="text-accent-foreground font-bold text-sm">2</span>
@@ -97,7 +97,7 @@ const About = () => {
                       <p className="text-sm text-muted-foreground">RBI authorized with years of reliable service experience</p>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-start space-x-4">
                     <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
                       <span className="text-primary-foreground font-bold text-sm">3</span>

@@ -11,7 +11,7 @@ const Footer = () => {
                 <span className="text-primary-foreground font-bold text-xl">VF</span>
               </div>
               <div>
-                <h3 className="font-bold text-xl">Vallabh Forex Pvt Ltd</h3>
+                <h3 className="font-bold text-xl">Shri Vallabh Forex Pvt Ltd</h3>
                 <p className="text-sm opacity-80">Ahmedabad, Gujarat</p>
               </div>
             </div>
@@ -33,7 +33,7 @@ const Footer = () => {
               </div>
             </div>
           </div>
-          
+
           <div>
             <h4 className="font-semibold mb-4">Services</h4>
             <ul className="space-y-2 text-background/80">
@@ -43,7 +43,7 @@ const Footer = () => {
               <li>Travel Insurance</li>
             </ul>
           </div>
-          
+
           <div>
             <h4 className="font-semibold mb-4">Quick Links</h4>
             <ul className="space-y-2 text-background/80">
@@ -54,9 +54,9 @@ const Footer = () => {
             </ul>
           </div>
         </div>
-        
+
         <div className="border-t border-background/20 mt-8 pt-8 text-center text-background/60">
-          <p>&copy; 2024 Vallabh Forex Inc. All rights reserved. RBI Authorized Money Changer.</p>
+          <p>&copy; 2024 Shri Vallabh Forex Pvt Ltd. All rights reserved. RBI Authorized Money Changer.</p>
         </div>
       </div>
     </footer>
