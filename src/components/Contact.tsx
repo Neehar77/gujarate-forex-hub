@@ -21,7 +21,7 @@ const Contact = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     const success = await handleContactForm(formData);
     if (success) {
       setFormData({
@@ -51,7 +51,7 @@ const Contact = () => {
             Ready to start your financial journey? Contact us for personalized service and competitive rates.
           </p>
         </div>
-        
+
         <div className="grid lg:grid-cols-2 gap-12">
           <div className="space-y-8 animate-fade-in">
             <div>
@@ -66,7 +66,7 @@ const Contact = () => {
                     <p className="text-muted-foreground">+91 9913647948</p>
                   </div>
                 </div>
-                
+
                 <div className="flex items-start space-x-4">
                   <div className="w-12 h-12 bg-accent rounded-lg flex items-center justify-center">
                     <Mail className="w-6 h-6 text-accent-foreground" />
@@ -76,7 +76,7 @@ const Contact = () => {
                     <p className="text-muted-foreground">vallabhforex@gmail.com</p>
                   </div>
                 </div>
-                
+
                 <div className="flex items-start space-x-4">
                   <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center">
                     <MapPin className="w-6 h-6 text-primary-foreground" />
@@ -91,7 +91,7 @@ const Contact = () => {
                     </p>
                   </div>
                 </div>
- 
+
                 <div className="flex items-start space-x-4">
                   <div className="w-12 h-12 bg-accent rounded-lg flex items-center justify-center">
                     <Clock className="w-6 h-6 text-accent-foreground" />
@@ -99,8 +99,7 @@ const Contact = () => {
                   <div>
                     <h4 className="font-semibold mb-1">Business Hours</h4>
                     <p className="text-muted-foreground">
-                      Monday - Friday: 9:00 AM - 6:00 PM<br />
-                      Saturday: 9:00 AM - 2:00 PM<br />
+                      Monday - Saturday: 10:30 AM - 7:00 PM<br />
                       Sunday: Closed
                     </p>
                   </div>
@@ -108,7 +107,7 @@ const Contact = () => {
               </div>
             </div>
           </div>
-          
+
           <Card className="animate-slide-up shadow-lg">
             <CardHeader>
               <CardTitle className="text-2xl">Send us a Message</CardTitle>
@@ -118,72 +117,72 @@ const Contact = () => {
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label htmlFor="name">Full Name *</Label>
-                    <Input 
-                      id="name" 
+                    <Input
+                      id="name"
                       value={formData.name}
                       onChange={(e) => handleInputChange('name', e.target.value)}
-                      placeholder="Enter your full name" 
+                      placeholder="Enter your full name"
                       required
                     />
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="phone">Phone Number *</Label>
-                    <Input 
-                      id="phone" 
+                    <Input
+                      id="phone"
                       value={formData.phone}
                       onChange={(e) => handleInputChange('phone', e.target.value)}
-                      placeholder="Enter your phone number" 
+                      placeholder="Enter your phone number"
                       required
                     />
                   </div>
                 </div>
-                
+
                 <div className="space-y-2">
                   <Label htmlFor="email">Email Address *</Label>
-                  <Input 
-                    id="email" 
-                    type="email" 
+                  <Input
+                    id="email"
+                    type="email"
                     value={formData.email}
                     onChange={(e) => handleInputChange('email', e.target.value)}
-                    placeholder="Enter your email address" 
+                    placeholder="Enter your email address"
                     required
                   />
                 </div>
-                
+
                 <div className="space-y-2">
                   <Label htmlFor="service">Service Interested In *</Label>
-                  <Input 
-                    id="service" 
+                  <Input
+                    id="service"
                     value={formData.service}
                     onChange={(e) => handleInputChange('service', e.target.value)}
-                    placeholder="Foreign Exchange, Travel Insurance, etc." 
+                    placeholder="Foreign Exchange, Travel Insurance, etc."
                     required
                   />
                 </div>
-                
+
                 <div className="space-y-2">
                   <Label htmlFor="message">Message *</Label>
-                  <Textarea 
-                    id="message" 
+                  <Textarea
+                    id="message"
                     value={formData.message}
                     onChange={(e) => handleInputChange('message', e.target.value)}
-                    placeholder="Tell us about your requirements..." 
+                    placeholder="Tell us about your requirements..."
                     className="min-h-[120px]"
                     required
                   />
                 </div>
-                
-                <Button 
+
+                <Button
                   type="submit"
-                  variant="hero" 
-                  className="w-full" 
+                  variant="hero"
+                  className="w-full"
                   size="lg"
                   disabled={isLoading}
                 >
                   {isLoading ? "Sending..." : "Send Message"}
                 </Button>
               </form>
-              
+
               <p className="text-sm text-muted-foreground text-center">
                 We'll get back to you within 24 hours
               </p>

@@ -1,5 +1,5 @@
 import { Mail, Phone, MapPin } from "lucide-react";
-import logo from '../assets/logo.jpg';
+
 
 const Footer = () => {
   return (
@@ -9,7 +9,7 @@ const Footer = () => {
           <div className="col-span-2">
             <div className="flex items-center space-x-2 mb-4">
               <img
-                src={logo}
+                src="/logo.jpg"
                 alt="Shri Vallabh Forex Logo"
                 className="w-12 h-12 rounded-full object-cover border-2 border-primary"
               />

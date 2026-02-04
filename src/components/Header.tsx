@@ -1,7 +1,6 @@
 
 import { Phone, Mail, Menu, X, Clock, MapPin } from "lucide-react";
 import { useState } from "react";
-import logo from '../assets/logo.jpg';
 import { useFormSubmission } from '@/hooks/use-form-submission';
 
 const Header = () => {
@@ -21,7 +20,7 @@ const Header = () => {
         <div className="flex justify-between items-center">
           <a href="#" className="flex items-center space-x-3 group">
             <img
-              src={logo}
+              src="/logo.jpg"
               alt="Shri Vallabh Forex Logo"
               className="w-12 h-12 rounded-full object-cover border-2 border-primary group-hover:border-accent transition-colors"
             />
