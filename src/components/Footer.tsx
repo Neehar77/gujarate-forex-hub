@@ -1,4 +1,5 @@
 import { Mail, Phone, MapPin } from "lucide-react";
+import logo from '../assets/logo.jpg';
 
 const Footer = () => {
   return (
@@ -7,9 +8,11 @@ const Footer = () => {
         <div className="grid md:grid-cols-4 gap-8">
           <div className="col-span-2">
             <div className="flex items-center space-x-2 mb-4">
-              <div className="w-10 h-10 bg-gradient-to-r from-primary to-accent rounded-lg flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-xl">VF</span>
-              </div>
+              <img
+                src={logo}
+                alt="Shri Vallabh Forex Logo"
+                className="w-12 h-12 rounded-full object-cover border-2 border-primary"
+              />
               <div>
                 <h3 className="font-bold text-xl">Shri Vallabh Forex Pvt Ltd</h3>
                 <p className="text-sm opacity-80">Ahmedabad, Gujarat</p>
